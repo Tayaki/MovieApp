@@ -1,4 +1,9 @@
 package hu.bme.aut.movieapp.interactor.shows.events
 
-class GetShowEvent {
-}
+import hu.bme.aut.movieapp.model.Show
+
+data class GetShowEvent (
+    var code: Int = 0,
+    var show: Show? = null,
+    var throwable: Throwable? = null
+)

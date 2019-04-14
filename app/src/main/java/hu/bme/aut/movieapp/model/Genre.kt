@@ -1,4 +1,8 @@
 package hu.bme.aut.movieapp.model
 
-class Genre {
-}
+import com.google.gson.annotations.SerializedName
+
+data class Genre (
+    @SerializedName("name")
+    var name: String? = null
+)
