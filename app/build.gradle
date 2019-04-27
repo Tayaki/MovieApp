@@ -22,6 +22,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -45,4 +48,7 @@ dependencies {
     implementation "com.google.code.gson:gson:2.8.5"
     implementation "com.squareup.okhttp3:logging-interceptor:3.12.1"
     implementation "com.github.nisrulz:recyclerviewhelper:x1.0.0"
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.3'
 }

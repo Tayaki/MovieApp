@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import github.nisrulz.recyclerviewhelper.RVHAdapter
 import github.nisrulz.recyclerviewhelper.RVHViewHolder
 import hu.bme.aut.movieapp.R
+import hu.bme.aut.movieapp.db.model.ShowDb
 import hu.bme.aut.movieapp.model.Show
 import hu.bme.aut.movieapp.ui.details.DetailsActivity
 import hu.bme.aut.movieapp.ui.main.MainActivity.Companion.SHOW_ID
@@ -17,7 +18,7 @@ import java.util.*
 
 class MainAdapter constructor(
     private val context: Context,
-    private var shows: MutableList<Show>,
+    private var shows: MutableList<ShowDb>,
     private val presenter: MainPresenter
 ) : RecyclerView.Adapter<MainAdapter.ViewHolder>(), RVHAdapter {
 
@@ -30,6 +31,7 @@ class MainAdapter constructor(
         val show = shows[position]
 
         holder.name.text = show.name
+        holder.score.text = show.avgRate.toString()
         holder.name.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(SHOW_ID, show.id)
@@ -40,7 +42,7 @@ class MainAdapter constructor(
     override fun getItemCount() = shows.size
 
     override fun onItemDismiss(position: Int, direction: Int) {
-        presenter.removeShow(shows[position])
+        presenter.removeShow(shows[position], position)
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
@@ -50,6 +52,7 @@ class MainAdapter constructor(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view), RVHViewHolder {
         var name = view.show_name!!
+        var score = view.score!!
 
         override fun onItemSelected(actionstate: Int) {
         }
@@ -61,5 +64,20 @@ class MainAdapter constructor(
     private fun swap(firstPosition: Int, secondPosition: Int) {
         Collections.swap(shows, firstPosition, secondPosition)
         notifyDataSetChanged()
+    }
+
+    fun remove(position: Int) {
+        shows.remove(shows[position])
+        notifyItemRemoved(position)
+    }
+
+    fun update(shows: MutableList<ShowDb>) {
+        this.shows = shows
+        notifyDataSetChanged()
+    }
+
+    fun add(show: ShowDb) {
+        this.shows.add(show)
+        notifyItemInserted(shows.size - 1)
     }
 }

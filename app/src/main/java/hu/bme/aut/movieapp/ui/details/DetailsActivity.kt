@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import hu.bme.aut.movieapp.R
+import hu.bme.aut.movieapp.db.model.ShowDb
 import hu.bme.aut.movieapp.injector
-import hu.bme.aut.movieapp.model.Show
 import hu.bme.aut.movieapp.ui.main.MainActivity.Companion.SHOW_ID
 import kotlinx.android.synthetic.main.activity_details.*
 import javax.inject.Inject
@@ -40,7 +40,7 @@ class DetailsActivity : AppCompatActivity(), DetailsScreen {
         return true
     }
 
-    override fun showShow(show: Show?) {
+    override fun showShow(show: ShowDb?) {
         details_content.text = show.toString()
     }
 

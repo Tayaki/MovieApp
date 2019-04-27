@@ -1,5 +1,6 @@
 package hu.bme.aut.movieapp.ui.create
 
+import hu.bme.aut.movieapp.db.model.ShowDb
 import hu.bme.aut.movieapp.interactor.shows.ShowsInteractor
 import hu.bme.aut.movieapp.interactor.shows.events.AddShowEvent
 import hu.bme.aut.movieapp.model.Show
@@ -15,7 +16,7 @@ class CreatePresenter @Inject constructor(
     private val interactor: ShowsInteractor
 ) : Presenter<CreateScreen>() {
 
-    fun addShow(show: Show) {
+    fun addShow(show: ShowDb) {
         executor.execute {
             interactor.addShow(show)
         }

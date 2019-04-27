@@ -1,5 +1,6 @@
 package hu.bme.aut.movieapp.ui.main
 
+import hu.bme.aut.movieapp.db.model.ShowDb
 import hu.bme.aut.movieapp.interactor.shows.ShowsInteractor
 import hu.bme.aut.movieapp.interactor.shows.events.AddShowEvent
 import hu.bme.aut.movieapp.interactor.shows.events.GetShowsEvent
@@ -21,9 +22,9 @@ class MainPresenter @Inject constructor(private val executor: Executor, private 
         }
     }
 
-    fun removeShow(show: Show) {
+    fun removeShow(show: ShowDb, position: Int) {
         executor.execute {
-            interactor.removeShow(show)
+            interactor.removeShow(show, position)
         }
     }
 
@@ -71,7 +72,7 @@ class MainPresenter @Inject constructor(private val executor: Executor, private 
         } else {
             if (screen != null) {
                 if (event.show != null) {
-                    screen?.removeShow(event.show!!)
+                    screen?.removeShow(event.show!!, event.position!!)
                 }
             }
         }

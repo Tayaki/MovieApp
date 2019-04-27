@@ -1,5 +1,6 @@
 package hu.bme.aut.movieapp.interactor
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import hu.bme.aut.movieapp.interactor.shows.ShowsInteractor
@@ -10,5 +11,5 @@ import javax.inject.Singleton
 class InteractorModule {
     @Provides
     @Singleton
-    fun provideShowsInteractor(showsApi: ShowsApi) = ShowsInteractor(showsApi)
+    fun provideShowsInteractor(showsApi: ShowsApi, context: Context) = ShowsInteractor(showsApi, context)
 }

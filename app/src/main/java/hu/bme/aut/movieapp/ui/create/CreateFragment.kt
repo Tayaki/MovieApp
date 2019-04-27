@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import hu.bme.aut.movieapp.R
+import hu.bme.aut.movieapp.db.model.ShowDb
 import hu.bme.aut.movieapp.injector
 import hu.bme.aut.movieapp.model.Show
 import kotlinx.android.synthetic.main.fragment_create.*
+import java.util.*
 import javax.inject.Inject
 
 class CreateFragment : DialogFragment(), CreateScreen {
@@ -24,7 +26,10 @@ class CreateFragment : DialogFragment(), CreateScreen {
         super.onViewCreated(view, savedInstanceState)
 
         btn_save.setOnClickListener {
-            val show = Show()
+            val show = ShowDb()
+            show.id = Random(696969).nextInt()
+            show.name = "TEST"
+            show.avgRate = 11.0
             createPresenter.addShow(show)
         }
     }
