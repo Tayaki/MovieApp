@@ -14,14 +14,12 @@ data class ShowDb(
     var id: Int? = null,
     @ColumnInfo(name = "name")
     var name: String? = null,
-    @ColumnInfo(name = "date")
-    var date: Date? = null,
+    @ColumnInfo(name = "firstAirDate")
+    var firstAirDate: Date? = null,
     @ColumnInfo(name = "url")
     var url: String? = null,
     @ColumnInfo(name = "avgRate")
     var avgRate: Double? = null,
-    @ColumnInfo(name = "lang")
-    var lang: String? = null,
     @ColumnInfo(name = "seasons")
     var seasons: Int? = null,
     @ColumnInfo(name = "episodes")
@@ -29,5 +27,7 @@ data class ShowDb(
     @ColumnInfo(name = "overview")
     var overview: String? = null,
     @ColumnInfo(name = "genres")
-    var genres: String? = null
+    var genres: String? = null,
+    @ColumnInfo(name = "status")
+    var status: String? = null
 )

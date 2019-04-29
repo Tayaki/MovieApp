@@ -42,8 +42,6 @@ class MainActivity : AppCompatActivity(), MainScreen {
         )
         val helper = ItemTouchHelper(callback)
         helper.attachToRecyclerView(show_list)
-
-        mainPresenter.getShows()
     }
 
     override fun onStart() {
@@ -54,6 +52,11 @@ class MainActivity : AppCompatActivity(), MainScreen {
     override fun onStop() {
         super.onStop()
         mainPresenter.detachScreen()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainPresenter.getShows()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

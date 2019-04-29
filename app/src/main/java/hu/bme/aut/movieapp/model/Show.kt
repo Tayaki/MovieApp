@@ -10,13 +10,11 @@ data class Show (
     @SerializedName("name")
     var name: String? = null,
     @SerializedName("first_air_date")
-    var date: Date? = null,
+    var firstAirDate: Date? = null,
     @SerializedName("backdrop_path")
     var url: String? = null,
     @SerializedName("vote_average")
     var avgRate: Double? = null,
-    @SerializedName("original_language")
-    var lang: String? = null,
     @SerializedName("number_of_seasons")
     var seasons: Int? = null,
     @SerializedName("number_of_episodes")
@@ -24,5 +22,7 @@ data class Show (
     @SerializedName("overview")
     var overview: String? = null,
     @SerializedName("genres")
-    var genres: List<Genre> = ArrayList()
+    var genres: List<Genre> = ArrayList(),
+    @SerializedName("status")
+    var status: String? = null
 )

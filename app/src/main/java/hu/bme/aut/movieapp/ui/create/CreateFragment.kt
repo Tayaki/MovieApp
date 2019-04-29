@@ -27,9 +27,19 @@ class CreateFragment : DialogFragment(), CreateScreen {
 
         btn_save.setOnClickListener {
             val show = ShowDb()
-            show.id = Random(696969).nextInt()
-            show.name = "TEST"
-            show.avgRate = 11.0
+            show.id = (666..999).shuffled().first()
+            show.name = create_title.text.toString()
+            show.avgRate = create_ratings.text.toString().toDouble()
+            var date = Calendar.getInstance()
+            date.set(create_first_air.year, create_first_air.month, create_first_air.dayOfMonth)
+            show.firstAirDate = Date(date.timeInMillis)
+            show.genres = create_genres.text.toString()
+            show.seasons = create_seasons.text.toString().toInt()
+            show.episodes = create_episodes.text.toString().toInt()
+            show.overview = create_plot.text.toString()
+            show.status = if (create_ongoing.isChecked)
+                getResources().getString(R.string.ongoing) else
+                getResources().getString(R.string.completed)
             createPresenter.addShow(show)
         }
     }

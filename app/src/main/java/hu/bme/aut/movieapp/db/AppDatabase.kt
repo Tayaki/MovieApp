@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import hu.bme.aut.movieapp.dao.ShowDao
 import hu.bme.aut.movieapp.db.model.ShowDb
 
-@Database(entities = [(ShowDb::class)], version = 1, exportSchema = false)
+@Database(entities = [(ShowDb::class)], version = 5, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 

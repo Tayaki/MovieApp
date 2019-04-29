@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="main_title">TV show database</string>
     <string name="create_title">Add new TV show</string>
-    <string name="details_title">TV show title</string>
+    <string name="details_title">TV show</string>
     <string name="loading">Loading...</string>
     <string name="score">N/A</string>
     <string name="add">Add</string>
@@ -12,4 +12,15 @@
     <string name="save">Save</string>
     <string name="added">Added successfully!</string>
     <string name="removed">Removed successfully!</string>
+    <string name="genres">Genres</string>
+    <string name="avarage_rating">Avarage rating</string>
+    <string name="seasons">Seasons</string>
+    <string name="episodes">Episodes</string>
+    <string name="first_air">First air</string>
+    <string name="last_air">Last air</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="completed">Completed</string>
+    <string name="original_language">Original language</string>
+    <string name="plot">Plot</string>
+    <string name="title">Title</string>
 </resources>

@@ -16,6 +16,7 @@ import org.modelmapper.ModelMapper
 import javax.inject.Inject
 
 class ShowsInteractor @Inject constructor(private var showsApi: ShowsApi, private var context: Context) {
+
     fun getShows() {
         val event = GetShowsEvent()
 
@@ -75,7 +76,11 @@ class ShowsInteractor @Inject constructor(private var showsApi: ShowsApi, privat
         EventBus.getDefault().post(event)
     }
 
-    private fun mapShowTpDb(show: Show) = ModelMapper().map(show, ShowDb::class.java)
+    private fun mapShowToDb(show: Show): ShowDb {
+        var showDb = ModelMapper().map(show, ShowDb::class.java)
+        showDb.genres = show.genres.map { it.name }.joinToString(separator = ", ")
+        return showDb
+    }
 
     private fun getShowDetails(id: Int): Show {
         val showsCall = showsApi.getShowDetails(id, NetworkConfig.API_KEY, "en-US")
@@ -89,7 +94,7 @@ class ShowsInteractor @Inject constructor(private var showsApi: ShowsApi, privat
     }
 
     private fun saveShow(show: Show): ShowDb {
-        val showDb = mapShowTpDb(show)
+        val showDb = mapShowToDb(show)
         AppDatabase.getInstance(context).showDao().insert(showDb)
         return showDb
     }

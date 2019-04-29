@@ -47,7 +47,6 @@ class MainPresenter @Inject constructor(private val executor: Executor, private 
                 if (event.shows != null) {
                     screen?.listShows(event.shows)
                 }
-
             }
         }
     }
