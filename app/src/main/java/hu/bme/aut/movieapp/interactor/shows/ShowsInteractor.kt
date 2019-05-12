@@ -15,13 +15,16 @@ import org.greenrobot.eventbus.EventBus
 import org.modelmapper.ModelMapper
 import javax.inject.Inject
 
-class ShowsInteractor @Inject constructor(private var showsApi: ShowsApi, private var context: Context) {
+class ShowsInteractor @Inject constructor(
+    private var showsApi: ShowsApi,
+    private var context: Context,
+    private var db: AppDatabase) {
 
     fun getShows() {
         val event = GetShowsEvent()
 
         try {
-            val shows = AppDatabase.getInstance(context).showDao().getAllShow().toMutableList()
+            val shows = db.showDao().getAllShow().toMutableList()
             var showDbList = mutableListOf<ShowDb>()
 
             if (shows.isEmpty()) {
@@ -53,7 +56,7 @@ class ShowsInteractor @Inject constructor(private var showsApi: ShowsApi, privat
         val event = GetShowEvent()
 
         try {
-            val show = AppDatabase.getInstance(context).showDao().getShowById(id)
+            val show = db.showDao().getShowById(id)
 
             event.code = 200
             event.show = show
@@ -65,13 +68,13 @@ class ShowsInteractor @Inject constructor(private var showsApi: ShowsApi, privat
     }
 
     fun addShow(show: ShowDb) {
-        AppDatabase.getInstance(context).showDao().insert(show)
+        db.showDao().insert(show)
         val event = AddShowEvent(show = show)
         EventBus.getDefault().post(event)
     }
 
     fun removeShow(show: ShowDb, position: Int) {
-        AppDatabase.getInstance(context).showDao().deleteById(show.id!!)
+        db.showDao().deleteById(show.id!!)
         val event = RemoveShowEvent(show = show, position = position)
         EventBus.getDefault().post(event)
     }
@@ -95,7 +98,7 @@ class ShowsInteractor @Inject constructor(private var showsApi: ShowsApi, privat
 
     private fun saveShow(show: Show): ShowDb {
         val showDb = mapShowToDb(show)
-        AppDatabase.getInstance(context).showDao().insert(showDb)
+        db.showDao().insert(showDb)
         return showDb
     }
 }

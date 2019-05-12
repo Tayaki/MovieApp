@@ -1,6 +1,7 @@
 package hu.bme.aut.movieapp
 
 import dagger.Component
+import hu.bme.aut.movieapp.db.DatabaseModule
 import hu.bme.aut.movieapp.interactor.InteractorModule
 import hu.bme.aut.movieapp.network.NetworkModule
 import hu.bme.aut.movieapp.ui.UIModule
@@ -10,7 +11,7 @@ import hu.bme.aut.movieapp.ui.main.MainActivity
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [UIModule::class, NetworkModule::class, InteractorModule::class])
+@Component(modules = [UIModule::class, NetworkModule::class, InteractorModule::class, DatabaseModule::class])
 interface MovieAppApplicationComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(detailsActivity: DetailsActivity)
