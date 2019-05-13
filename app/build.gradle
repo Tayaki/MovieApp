@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'io.fabric'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -38,6 +40,9 @@ android {
         unitTests {
             includeAndroidResources = true
         }
+    }
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
     }
 }
 
@@ -72,4 +77,8 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:1.1.1"
     kapt "android.arch.persistence.room:compiler:1.1.1"
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.3'
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true
+    }
 }

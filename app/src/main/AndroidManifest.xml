@@ -27,6 +27,8 @@
                 android:label="@string/details_title"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <meta-data
+                android:name="io.fabric.ApiKey"
+                android:value="6abcca2dd7a3e71d82b63ba6c3fa325ccd783eeb" />
     </application>
-
 </manifest>

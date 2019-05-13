@@ -14,12 +14,14 @@ import hu.bme.aut.movieapp.R
 import hu.bme.aut.movieapp.db.AppDatabase
 import hu.bme.aut.movieapp.db.model.ShowDb
 import hu.bme.aut.movieapp.injector
-import hu.bme.aut.movieapp.model.Show
 import hu.bme.aut.movieapp.ui.create.CreateFragment
 
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 import kotlin.concurrent.thread
+
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
 
 class MainActivity : AppCompatActivity(), MainScreen {
     @Inject
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity(), MainScreen {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Fabric.with(this, Crashlytics())
         setSupportActionBar(toolbar)
         injector.inject(this)
 
